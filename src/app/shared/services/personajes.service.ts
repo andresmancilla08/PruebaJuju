@@ -1,7 +1,11 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { Personaje } from "../interface/personaje.interface";
+import { map } from "rxjs/operators";
+import { Observable } from "rxjs";
+
+type ArrayResponseAny = HttpResponse<any[]>;
 
 @Injectable({
   providedIn: "root",
@@ -9,9 +13,12 @@ import { Personaje } from "../interface/personaje.interface";
 export class PersonajesService {
   constructor(private http: HttpClient) {}
 
-  getObtenerPersonajes(input = "", pagina = 1) {
-    return this.http.get<Personaje[]>(
-      `${environment.baseUrlApi}character/?name=${input}&page=${pagina}`
+  getObtenerPersonajes(input: string, pagina: number): Observable<any> {
+    return this.http.get(
+      `${environment.baseUrlApi}character/?name=${input}&page=${pagina}`,
+      {
+        observe: "response",
+      }
     );
   }
 

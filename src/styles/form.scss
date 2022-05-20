@@ -1,0 +1,13 @@
+.zoom {
+  transition: transform 0.2s;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+  box-shadow: rgba(0, 171, 123, 0.684) 0px 15px 25px,
+    rgba(0, 171, 123, 0.684) 0px 5px 10px;
+}
+
+.color-header {
+  color: rgba(0, 171, 123, 0.684);
+}
