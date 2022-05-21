@@ -94,6 +94,12 @@ export class ListPersonajesComponent implements OnInit {
       );
   }
 
+  pageDetallePersonaje(id: number) {
+    this.router.navigate(["/detallePersonaje/", id], {
+      queryParams: { id: id },
+    });
+  }
+
   ngOnInit(): void {
     this.getDataPersonajes();
   }

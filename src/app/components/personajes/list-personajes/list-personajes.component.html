@@ -18,7 +18,7 @@
         *ngFor="let personaje of personajes"
       >
         <div id="image">
-          <a [routerLink]="['/character-details', personaje.id]">
+          <a (click)="pageDetallePersonaje(personaje.id)">
             <img src="{{personaje.image}}" alt="{{personaje.name}}" />
             <div class="m-3">
               <h3 class="text-name" id="nombre">{{personaje.name}}</h3>

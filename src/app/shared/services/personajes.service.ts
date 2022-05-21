@@ -22,7 +22,9 @@ export class PersonajesService {
     );
   }
 
-  getDetallePersonaje(id: number) {
-    return this.http.get<Personaje>(`${environment.baseUrlApi}character/${id}`);
+  getDetallePersonaje(id: number): Observable<any> {
+    return this.http.get(`${environment.baseUrlApi}character/${id}`, {
+      observe: "response",
+    });
   }
 }
