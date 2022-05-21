@@ -7,8 +7,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-  hideOptions: boolean = false;
-  nameText: string = "";
+  nameOptionHeader = "Personajes";
 
   constructor(private router: Router) {}
 

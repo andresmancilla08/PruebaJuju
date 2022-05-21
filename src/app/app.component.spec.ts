@@ -1,35 +1,21 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AppComponent } from "./app.component";
+import { HomeRoutingModule } from "./components/home/home-routing.module";
+import { HomeComponent } from "./components/home/home.component";
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  // Verifica si el nombre o titulo indicado de la app es igual al que se le pasa para esta prueba.
+  it(`Titulo de la app 'Prueba Rick and Morty - AM'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'RickAndMorty'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('RickAndMorty');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('RickAndMorty app is running!');
+    expect(app.title).toEqual("Prueba Rick and Morty - AM");
   });
 });

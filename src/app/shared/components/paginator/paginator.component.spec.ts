@@ -1,25 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PaginatorComponent } from './paginator.component';
+import { PaginatorComponent } from "./paginator.component";
 
-describe('PaginatorComponent', () => {
+describe("PaginatorComponent", () => {
   let component: PaginatorComponent;
   let fixture: ComponentFixture<PaginatorComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaginatorComponent ]
-    })
-    .compileComponents();
+      declarations: [PaginatorComponent],
+    }).compileComponents();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PaginatorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it("Debe existir un metodo llamado changeTestUnitContIni()", () => {
+    let metodoLlamado = spyOn(component, "validarCargaPersonajes");
+    component.validarCargaPersonajes(42);
+    expect(metodoLlamado).toHaveBeenCalled();
   });
 });

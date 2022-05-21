@@ -29,13 +29,18 @@ export class PaginatorComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    if (this.datosPaginador.results.length > 1) {
-      this.contInicio = this.datosPaginador.results[0].id;
-      this.contFin = this.datosPaginador.results[
-        this.datosPaginador.results.length - 1
-      ].id;
-    } else {
+  validarCargaPersonajes(valor: number) {
+    console.log(this.datosPaginador.length);
+
+    if (this.datosPaginador.length > valor) {
+      return this.datosPaginador.length;
     }
+  }
+
+  ngOnInit(): void {
+    this.contInicio = this.datosPaginador.results[0].id;
+    this.contFin = this.datosPaginador.results[
+      this.datosPaginador.results.length - 1
+    ].id;
   }
 }
