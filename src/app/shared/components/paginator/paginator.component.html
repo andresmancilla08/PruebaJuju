@@ -7,8 +7,8 @@
   </span>
   <div class="inline-flex mt-2 xs:mt-0 w-full">
     <button
-      [ngClass]="!datosPaginador.info.prev ? 'bg-gray-500 ': 'bg-gray-800 '"
-      class="inline-flex items-center w-1/3 py-2 px-4 mx-6 text-sm font-medium text-white rounded-2xl"
+      [ngClass]="!datosPaginador.info.prev ? 'bg-btn-disabled-primary text-green-600': 'bg-btn-primary text-green-900'"
+      class="inline-flex items-center w-1/3 py-2 px-4 mx-6 text-sm font-medium rounded-2xl"
       [disabled]="!datosPaginador.info.prev ? true: false"
       (click)="changeBtnPrev()"
     >
@@ -27,7 +27,7 @@
       Anterior
     </button>
     <button
-      [ngClass]="!datosPaginador.info.next ? 'bg-gray-500 ': 'bg-gray-800 '"
+      [ngClass]="!datosPaginador.info.next ? 'bg-btn-disabled-primary text-green-600': 'bg-btn-primary text-green-900'"
       class="inline-flex items-center w-1/3 py-2 px-4 mx-6 text-sm font-medium text-white rounded-2xl"
       [disabled]="!datosPaginador.info.next ? true: false"
       (click)="changeBtnNext()"

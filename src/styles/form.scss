@@ -16,6 +16,10 @@
   background-color: rgba(0, 171, 123, 0.684);
 }
 
+.bg-btn-disabled-primary {
+  background-color: rgba(164, 243, 221, 0.684);
+}
+
 @keyframes rotate {
   from {
     transform: rotate(0deg);
