@@ -3,7 +3,7 @@
 </ng-container>
 <ng-template #elseTemplate>
   <div class="flex flex-wrap m-5 justify-center" id="filtros">
-    <div class="w-72 mr-3">
+    <div class="w-full md:w-72 md:mr-3">
       <label for="status" class="block mb-2 text-sm font-medium text-gray-900"
         >Estado</label
       >
@@ -20,15 +20,13 @@
       </select>
     </div>
 
-    <div class="w-72 mr-3">
+    <div class="w-full md:w-72 md:mr-3">
       <label
         for="countries"
         class="block mb-2 text-sm font-medium text-gray-900"
         >Especie</label
       >
-      <div
-        class="relative text-gray-600 sm:w-full md:w-2/4 lg:w-72 border-input-search"
-      >
+      <div class="relative text-gray-600 w-full border-input-search">
         <input
           type="search"
           placeholder="Buscar por especie"
@@ -61,11 +59,9 @@
       </div>
     </div>
 
-    <div class="w-72 mr-3">
+    <div class="w-full md:w-72 md:mr-3">
       <label class="block mb-2 text-sm font-medium text-gray-900">Tipo</label>
-      <div
-        class="relative text-gray-600 sm:w-full md:w-2/4 lg:w-72 border-input-search"
-      >
+      <div class="relative text-gray-600 w-full border-input-search">
         <input
           #type
           type="search"
@@ -100,7 +96,7 @@
       </div>
     </div>
 
-    <div class="w-72 mr-3">
+    <div class="w-full md:w-72 md:mr-3">
       <label
         for="countries"
         class="block mb-2 text-sm font-medium text-gray-900"
@@ -137,7 +133,11 @@
       >
         <div id="image">
           <a (click)="pageDetallePersonaje(personaje.id)">
-            <img src="{{personaje.image}}" alt="{{personaje.name}}" />
+            <img
+              class="w-full"
+              src="{{personaje.image}}"
+              alt="{{personaje.name}}"
+            />
             <div class="m-3">
               <h3 class="text-name" id="nombre">{{personaje.name}}</h3>
               <label class="text-description flex"
