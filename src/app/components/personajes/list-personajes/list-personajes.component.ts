@@ -21,10 +21,16 @@ export class ListPersonajesComponent implements OnInit {
   infoData: any = {};
   pagina: number = 1;
   consulta: string = "";
+  status: string = "";
+
   nextPageNull: boolean = false;
   totalPages: number = 0;
   loading: boolean = true;
   changePage: any = {};
+
+  specie: string = "";
+  typeSelect: string = "";
+  genero: string = "";
 
   constructor(
     private personajeService: PersonajesService,
@@ -65,7 +71,14 @@ export class ListPersonajesComponent implements OnInit {
     }
 
     this.personajeService
-      .getObtenerPersonajes(this.consulta, this.pagina)
+      .getObtenerPersonajes(
+        this.consulta,
+        this.pagina,
+        this.status,
+        this.specie,
+        this.typeSelect,
+        this.genero
+      )
       .pipe(
         filter((res: HttpResponse<any[]>) => res.ok),
         map((res: HttpResponse<any[]>) => res.body)
@@ -89,6 +102,7 @@ export class ListPersonajesComponent implements OnInit {
         },
         (res: HttpErrorResponse) => {
           console.log("Error al consultar los datos.", res.error);
+          this.personajes = [];
           this.loading = false;
         }
       );

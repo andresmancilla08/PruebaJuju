@@ -4,6 +4,7 @@ import { ListPersonajesComponent } from "./list-personajes/list-personajes.compo
 import { DetallePersonajeComponent } from "./detalle-personaje/detalle-personaje.component";
 import { RouterModule } from "@angular/router";
 import { PaginatorComponent } from "src/app/shared/components/paginator/paginator.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import { PaginatorComponent } from "src/app/shared/components/paginator/paginato
     DetallePersonajeComponent,
     PaginatorComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   exports: [ListPersonajesComponent, DetallePersonajeComponent],
 })
 export class PersonajesModule {}

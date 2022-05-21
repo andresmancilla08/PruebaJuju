@@ -13,9 +13,16 @@ type ArrayResponseAny = HttpResponse<any[]>;
 export class PersonajesService {
   constructor(private http: HttpClient) {}
 
-  getObtenerPersonajes(input: string, pagina: number): Observable<any> {
+  getObtenerPersonajes(
+    name: string,
+    pagina: number,
+    status: string,
+    species: string,
+    type: string,
+    gender: string
+  ): Observable<any> {
     return this.http.get(
-      `${environment.baseUrlApi}character/?name=${input}&page=${pagina}`,
+      `${environment.baseUrlApi}character/?name=${name}&page=${pagina}&status=${status}&species=${species}&type=${type}&gender=${gender}`,
       {
         observe: "response",
       }

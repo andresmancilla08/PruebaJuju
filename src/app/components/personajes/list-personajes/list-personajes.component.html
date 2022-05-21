@@ -2,6 +2,124 @@
   <div class="load"></div>
 </ng-container>
 <ng-template #elseTemplate>
+  <div class="flex flex-wrap m-5 justify-center" id="filtros">
+    <div class="w-72 mr-3">
+      <label for="status" class="block mb-2 text-sm font-medium text-gray-900"
+        >Estado</label
+      >
+      <select
+        id="status"
+        (change)="getDataPersonajes()"
+        [(ngModel)]="status"
+        class="bg-white border border-input-search text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option selected value="">Todos</option>
+        <option value="Alive">Alive</option>
+        <option value="Dead">Dead</option>
+        <option value="unknown">Unknown</option>
+      </select>
+    </div>
+
+    <div class="w-72 mr-3">
+      <label
+        for="countries"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Especie</label
+      >
+      <div
+        class="relative text-gray-600 sm:w-full md:w-2/4 lg:w-72 border-input-search"
+      >
+        <input
+          type="search"
+          placeholder="Buscar por especie"
+          [(ngModel)]="specie"
+          class="bg-white w-full h-10 px-5 pr-10 rounded-2xl border-gray-700 text-sm focus:outline-none"
+        />
+        <button
+          class="absolute right-0 top-0 mt-3 mr-4"
+          (click)="getDataPersonajes()"
+        >
+          <svg
+            class="h-4 w-4 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="Capa_1"
+            x="0px"
+            y="0px"
+            viewBox="0 0 56.966 56.966"
+            style="enable-background: new 0 0 56.966 56.966;"
+            xml:space="preserve"
+            width="512px"
+            height="512px"
+          >
+            <path
+              d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="w-72 mr-3">
+      <label class="block mb-2 text-sm font-medium text-gray-900">Tipo</label>
+      <div
+        class="relative text-gray-600 sm:w-full md:w-2/4 lg:w-72 border-input-search"
+      >
+        <input
+          #type
+          type="search"
+          name="type"
+          [(ngModel)]="typeSelect"
+          placeholder="Buscar por tipo"
+          class="bg-white w-full h-10 px-5 pr-10 rounded-2xl border-gray-700 text-sm focus:outline-none"
+        />
+        <button
+          class="absolute right-0 top-0 mt-3 mr-4"
+          (click)="getDataPersonajes()"
+        >
+          <svg
+            class="h-4 w-4 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="Capa_1"
+            x="0px"
+            y="0px"
+            viewBox="0 0 56.966 56.966"
+            style="enable-background: new 0 0 56.966 56.966;"
+            xml:space="preserve"
+            width="512px"
+            height="512px"
+          >
+            <path
+              d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="w-72 mr-3">
+      <label
+        for="countries"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Genero</label
+      >
+      <select
+        id="genero"
+        (change)="getDataPersonajes()"
+        [(ngModel)]="genero"
+        class="bg-white border border-input-search text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option selected value="">Todos</option>
+        <option value="Female">Female</option>
+        <option value="Dead">Male</option>
+        <option value="unknown">Genderless</option>
+        <option value="unknown">Unknown</option>
+      </select>
+    </div>
+  </div>
   <ng-container *ngIf="personajes.length > 0; else elseTemplate1">
     <div class="flex justify-center items-center" *ngIf="personajes.length > 5">
       <app-paginator
