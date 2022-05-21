@@ -10,6 +10,9 @@ export class PaginatorComponent implements OnInit {
   @Output() btnNext = new EventEmitter<any>();
   @Output() btnPrev = new EventEmitter<any>();
 
+  contInicio: number = 0;
+  contFin: number = 0;
+
   constructor() {}
 
   changeBtnNext() {
@@ -26,5 +29,13 @@ export class PaginatorComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.datosPaginador.results.length > 1) {
+      this.contInicio = this.datosPaginador.results[0].id;
+      this.contFin = this.datosPaginador.results[
+        this.datosPaginador.results.length - 1
+      ].id;
+    } else {
+    }
+  }
 }

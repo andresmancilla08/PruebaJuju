@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-header",
@@ -7,8 +8,19 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HeaderComponent implements OnInit {
   hideOptions: boolean = false;
+  nameText: string = "";
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  changeSearch(text: string) {
+    if (text === "") {
+      this.router.navigate(["/home"]);
+    } else if (text && text.length > 3) {
+      this.router.navigate(["/listPersonajes"], {
+        queryParams: { name: text },
+      });
+    }
+  }
 
   ngOnInit(): void {}
 }

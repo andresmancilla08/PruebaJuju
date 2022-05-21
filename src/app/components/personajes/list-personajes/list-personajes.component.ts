@@ -1,5 +1,11 @@
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  ParamMap,
+  Router,
+} from "@angular/router";
 import { filter, map } from "rxjs";
 import { Personaje } from "src/app/shared/interface/personaje.interface";
 import { PersonajesService } from "src/app/shared/services/personajes.service";
@@ -20,11 +26,35 @@ export class ListPersonajesComponent implements OnInit {
   loading: boolean = true;
   changePage: any = {};
 
-  constructor(private personajeService: PersonajesService) {}
+  constructor(
+    private personajeService: PersonajesService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.onChangeUrl();
+  }
+
+  // Metodo para detectar cambio de url y enrutar
+  onChangeUrl() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.personajes = [];
+        this.pagina = 1;
+        this.getDataPersonajes();
+      });
+  }
 
   // Metodo encargado de obtener todos los personajes del API.
   getDataPersonajes() {
     this.loading = true;
+
+    if (
+      this.router.parseUrl(this.router.url).queryParams["name"] !== undefined &&
+      this.router.parseUrl(this.router.url).queryParams["name"] !== ""
+    ) {
+      this.consulta = this.router.parseUrl(this.router.url).queryParams["name"];
+    }
 
     if (this.changePage.next) {
       this.pagina++;
@@ -58,7 +88,8 @@ export class ListPersonajesComponent implements OnInit {
           this.loading = false;
         },
         (res: HttpErrorResponse) => {
-          console.log("Error al consultar los trámites.", res.error);
+          console.log("Error al consultar los datos.", res.error);
+          this.loading = false;
         }
       );
   }
