@@ -5,7 +5,7 @@ import { ListPersonajesRoutingModule } from "./list-personajes-routing.module";
 import { PaginatorComponent } from "src/app/shared/components/paginator/paginator.component";
 
 @NgModule({
-  declarations: [PaginatorComponent],
+  declarations: [],
   imports: [CommonModule, ListPersonajesRoutingModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

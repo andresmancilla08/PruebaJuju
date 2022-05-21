@@ -17,11 +17,23 @@ export class ListPersonajesComponent implements OnInit {
   consulta: string = "";
   nextPageNull: boolean = false;
   totalPages: number = 0;
+  loading: boolean = true;
+  changePage: any = {};
 
   constructor(private personajeService: PersonajesService) {}
 
   // Metodo encargado de obtener todos los personajes del API.
   getDataPersonajes() {
+    this.loading = true;
+
+    if (this.changePage.next) {
+      this.pagina++;
+    }
+
+    if (this.changePage.prev) {
+      this.pagina--;
+    }
+
     this.personajeService
       .getObtenerPersonajes(this.consulta, this.pagina)
       .pipe(
@@ -38,10 +50,12 @@ export class ListPersonajesComponent implements OnInit {
 
           // Insertando resultados en variables necesarias
           this.personajes = res.results;
-          this.infoData = res.info;
+          this.infoData = res;
           if (!res.info.next) {
             this.nextPageNull = true;
           }
+
+          this.loading = false;
         },
         (res: HttpErrorResponse) => {
           console.log("Error al consultar los trámites.", res.error);
