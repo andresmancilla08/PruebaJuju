@@ -23,6 +23,7 @@ export class DetallePersonajeComponent implements OnInit {
     private router: Router
   ) {}
 
+  // Metodo que se encarga de consultar los datos del personaje respecto al id obtenido.
   getDetallePersonaje() {
     this.personajeService
       .getDetallePersonaje(this.idPersonaje)
@@ -32,7 +33,6 @@ export class DetallePersonajeComponent implements OnInit {
       )
       .subscribe(
         (res: any) => {
-          console.log("Datos personaje: ", res);
           this.datosPersonaje = res;
           this.loading = false;
         },
@@ -43,13 +43,13 @@ export class DetallePersonajeComponent implements OnInit {
       );
   }
 
+  // Metodo que redirecciona a la pagina anterior.
   salirDetalle() {
     this.location.back();
   }
 
   ngOnInit(): void {
     this.idPersonaje = this.router.parseUrl(this.router.url).queryParams["id"];
-    console.log(this.idPersonaje);
 
     this.getDetallePersonaje();
   }

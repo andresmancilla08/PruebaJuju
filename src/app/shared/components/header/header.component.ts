@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router) {}
 
+  // Metodo encargado de detectar los cambios sobre el input de busqueda por nombre y filtrar la lista de personajes.
   changeSearch(text: string) {
     if (text === "") {
       this.router.navigate(["/home"]);

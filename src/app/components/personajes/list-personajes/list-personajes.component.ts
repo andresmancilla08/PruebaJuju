@@ -19,8 +19,8 @@ export class ListPersonajesComponent implements OnInit {
   // Variables necesarias
   personajes: Personaje[] = [];
   infoData: any = {};
-  pagina: number = 1;
-  consulta: string = "";
+  page: number = 1;
+  name: string = "";
   status: string = "";
 
   nextPageNull: boolean = false;
@@ -46,7 +46,7 @@ export class ListPersonajesComponent implements OnInit {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         this.personajes = [];
-        this.pagina = 1;
+        this.page = 1;
         this.getDataPersonajes();
       });
   }
@@ -55,25 +55,28 @@ export class ListPersonajesComponent implements OnInit {
   getDataPersonajes() {
     this.loading = true;
 
+    // VAlidación para saber si se esta filtrando o no por nombre de personaje.
     if (
       this.router.parseUrl(this.router.url).queryParams["name"] !== undefined &&
       this.router.parseUrl(this.router.url).queryParams["name"] !== ""
     ) {
-      this.consulta = this.router.parseUrl(this.router.url).queryParams["name"];
+      this.name = this.router.parseUrl(this.router.url).queryParams["name"];
     }
 
+    // VAlidación si se hizo click sobre el boton de siguiente para incrementar la pagina y consultar datos.
     if (this.changePage.next) {
-      this.pagina++;
+      this.page++;
     }
 
+    // VAlidación si se hizo click sobre el boton de anterior para reducir el numero de pagina y consultar datos.
     if (this.changePage.prev) {
-      this.pagina--;
+      this.page--;
     }
 
     this.personajeService
       .getObtenerPersonajes(
-        this.consulta,
-        this.pagina,
+        this.name,
+        this.page,
         this.status,
         this.specie,
         this.typeSelect,
@@ -108,6 +111,7 @@ export class ListPersonajesComponent implements OnInit {
       );
   }
 
+  // Metodo para redireccionar al componente del detalle del personaje con el id correspondiente.
   pageDetallePersonaje(id: number) {
     this.router.navigate(["/detallePersonaje/", id], {
       queryParams: { id: id },
